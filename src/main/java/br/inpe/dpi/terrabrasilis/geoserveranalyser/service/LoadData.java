@@ -22,7 +22,7 @@ public class LoadData
     private static int restLayersCount = 0;
     private static int restLayerFTCount = 0;
 
-    public static void loadData(GeoServerConfig config) throws Exception
+    public static ArrayList<RestFeatureTypeLayerRoot> loadData(GeoServerConfig config) throws Exception
     {
 
         //Loads list of layers
@@ -35,9 +35,9 @@ public class LoadData
         for (RestLayer restLayer : restLayers.layers.getLayers()) 
         {
 
-            // if("prodes-legal-amz:temporal_mosaic_legal_amazon".equalsIgnoreCase(restLayer.name)==false)
+            // if("prodes-pantanal-nb:accumulated_deforestation_2000".equalsIgnoreCase(restLayer.name)==false)
             // {
-            //     continue;
+            //      continue;
             // }            
 
             //Load single layer info
@@ -62,11 +62,10 @@ public class LoadData
         {
             GeoService.getMap(config, restFeatureType);    
         }        
-        
-        CSVService.writeResultToCSV(singleRestLayerList);
-
         System.out.println("Rest Layers Count: " + restLayersCount);
         System.out.println("Rest Layers FT Count: " + restLayerFTCount);
+
+        return singleRestLayerList;
     }
 
     /**

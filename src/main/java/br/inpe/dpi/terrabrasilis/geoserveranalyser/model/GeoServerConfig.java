@@ -1,9 +1,13 @@
 package br.inpe.dpi.terrabrasilis.geoserveranalyser.model;
 
-public class GeoServerConfig {
+import java.util.ArrayList;
+
+public class GeoServerConfig 
+{
     private String url;
     private String username;
     private String password;
+    private ArrayList<String> businessAPIURLs;
 
 
     public String getUrl() {
@@ -46,4 +50,21 @@ public class GeoServerConfig {
         }
         return true;
     }
+
+
+    public ArrayList<String> getBusinessAPIURLs() {
+        return this.businessAPIURLs;
+    }
+
+    public void addBusinessAPIURL(String businessAPIURL) 
+    {
+        if(this.businessAPIURLs==null)
+        {
+            this.businessAPIURLs = new ArrayList<String>();
+        }
+        this.businessAPIURLs.add(businessAPIURL);
+        
+    }
+
+
 }

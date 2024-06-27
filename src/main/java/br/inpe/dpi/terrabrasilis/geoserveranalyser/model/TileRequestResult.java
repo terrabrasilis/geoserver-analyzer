@@ -3,11 +3,14 @@ package br.inpe.dpi.terrabrasilis.geoserveranalyser.model;
 public class TileRequestResult
 {
     private boolean sucess;
-    private double size;
-    private double duration;
-    private String GWCResult; 
+    private long size;
+    private long duration;
+    private String GWCResult=""; 
+    private String GWCResultMissReason="";         
     private int httpCode; 
     private String url;
+    private String contentType="";
+    private String xmlContent="";
     
 
     public TileRequestResult() 
@@ -15,19 +18,19 @@ public class TileRequestResult
         this.sucess = false;
     }
     
-    public double getSize() {
+    public long getSize() {
         return this.size;
     }
 
-    public void setSize(double size) {
+    public void setSize(long size) {
         this.size = size;
     }
 
-    public double getDuration() {
+    public long getDuration() {
         return this.duration;
     }
 
-    public void setDuration(double duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
@@ -69,5 +72,29 @@ public class TileRequestResult
         this.url = url;
     }
 
+    public String getContentType() {
+        return this.contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+
+    public String getXmlContent() {
+        return this.xmlContent;
+    }
+
+    public void setXmlContent(String xmlContent) {
+        this.xmlContent = xmlContent;
+    }
+
+    public String getGWCResultMissReason() {
+        return this.GWCResultMissReason;
+    }
+
+    public void setGWCResultMissReason(String GWCResultMissReason) {
+        this.GWCResultMissReason = GWCResultMissReason;
+    }
 
 }

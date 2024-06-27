@@ -13,9 +13,9 @@ public class CSVService
 {
     public static void writeResultToCSV(ArrayList<RestFeatureTypeLayerRoot> layerList) throws Exception    
     {
-        String[] headers = { "workspace", "name", "layer_type" ,"request_status", "request_url", "http_code", "error_message", "error_response_content", "native_name", 
-        "title", "external_metadata_count", "srs", "enabled", "geoserver_metadata", "datastore", "tilerequest_count", "tilerequest_sucess", "tilerequest_duration", "tilerequest_httpcode", "tilerequest_gwcresult", "tilerequest_datalength"
-        , "tilerequest_url"};
+        String[] headers = { "workspace", "name", "webmap_layer" , "layer_type" ,"request_status", "request_url", "http_code", "error_message", "error_response_content", "native_name", 
+        "title", "external_metadata_count", "srs", "enabled", "geoserver_metadata", "datastore", "tilerequest_count", "tilerequest_sucess", "tilerequest_duration", "tilerequest_httpcode", "tilerequest_contenttype", "tilerequest_gwcresult", "tilerequest_gwcresult_missreason", "gwcresultallmiss","tilerequest_datalength"
+        , "tilerequest_url", "tilerequest_xmlcontent"};
 
         CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(headers)
@@ -43,6 +43,7 @@ public class CSVService
                     csvPrinter.printRecord(
                         restSingleLayerRoot.featureType.namespace.name, //workspace
                         restSingleLayerRoot.featureType.name, //name
+                        restSingleLayerRoot.isBALayer,
                         layerType, //type
                         restSingleLayerRoot.requestStatus, //request_status
                         restSingleLayerRoot.requestURL, //request_url
@@ -60,9 +61,13 @@ public class CSVService
                         restSingleLayerRoot.getTilesRequestAttr("sucess"),
                         restSingleLayerRoot.getTilesRequestAttr("duration"),
                         restSingleLayerRoot.getTilesRequestAttr("httpcode"),
-                        restSingleLayerRoot.getTilesRequestAttr("gwcresult"),
+                        restSingleLayerRoot.getTilesRequestAttr("contenttype"),
+                        restSingleLayerRoot.getTilesRequestAttr("gwcresult"),                        
+                        restSingleLayerRoot.getTilesRequestAttr("gwcresultmissreason"),
+                        restSingleLayerRoot.isAllTilesMissGWC(),
                         restSingleLayerRoot.getTilesRequestAttr("datalength"),
-                        restSingleLayerRoot.getTilesRequestAttr("url")
+                        restSingleLayerRoot.getTilesRequestAttr("url"),
+                        restSingleLayerRoot.getTilesRequestAttr("xmlcontent")
                     );
                 }
                 else
@@ -70,6 +75,7 @@ public class CSVService
                     csvPrinter.printRecord(
                         restSingleLayerRoot.coverage.namespace.name, //workspace
                         restSingleLayerRoot.coverage.name, //name
+                        restSingleLayerRoot.isBALayer,
                         layerType, //type
                         restSingleLayerRoot.requestStatus, //request_status
                         restSingleLayerRoot.requestURL, //request_url
@@ -87,9 +93,13 @@ public class CSVService
                         restSingleLayerRoot.getTilesRequestAttr("sucess"),
                         restSingleLayerRoot.getTilesRequestAttr("duration"),
                         restSingleLayerRoot.getTilesRequestAttr("httpcode"),
+                        restSingleLayerRoot.getTilesRequestAttr("contenttype"),
                         restSingleLayerRoot.getTilesRequestAttr("gwcresult"),
+                        restSingleLayerRoot.getTilesRequestAttr("gwcresultmissreason"),
+                        restSingleLayerRoot.isAllTilesMissGWC(),
                         restSingleLayerRoot.getTilesRequestAttr("datalength"),
-                        restSingleLayerRoot.getTilesRequestAttr("url")
+                        restSingleLayerRoot.getTilesRequestAttr("url"),
+                        restSingleLayerRoot.getTilesRequestAttr("xmlcontent")
                     );
                 }
 
