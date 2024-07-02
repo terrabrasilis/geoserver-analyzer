@@ -8,6 +8,7 @@ public class GeoServerConfig
     private String username;
     private String password;
     private ArrayList<String> businessAPIURLs;
+    private String outputFile;
 
 
     public String getUrl() {
@@ -38,15 +39,19 @@ public class GeoServerConfig
     {
         if(this.url==null || this.url.isEmpty())
         {
-            throw new Exception("Wrong --geoserver-url parameter");
+            throw new Exception("Missing valid --geoserver-url parameter");
         }
         if(this.username==null || this.username.isEmpty())
         {
-            throw new Exception("Wrong --geoserver-username parameter");
+            throw new Exception("Missing valid --geoserver-username parameter");
         }
         if(this.password==null || this.password.isEmpty())
         {
-            throw new Exception("Wrong --geoserver-password parameter");
+            throw new Exception("Missing valid --geoserver-password parameter");
+        }
+        if(this.outputFile==null || this.outputFile.isEmpty())
+        {
+            throw new Exception("Missing valid --output-file parameter");
         }
         return true;
     }
@@ -64,6 +69,19 @@ public class GeoServerConfig
         }
         this.businessAPIURLs.add(businessAPIURL);
         
+    }
+
+
+    public void setBusinessAPIURLs(ArrayList<String> businessAPIURLs) {
+        this.businessAPIURLs = businessAPIURLs;
+    }
+
+    public String getOutputFile() {
+        return this.outputFile;
+    }
+
+    public void setOutputFile(String outputFile) {
+        this.outputFile = outputFile;
     }
 
 

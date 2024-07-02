@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
+import br.inpe.dpi.terrabrasilis.geoserveranalyser.model.GeoServerConfig;
 import br.inpe.dpi.terrabrasilis.geoserveranalyser.model.restfeaturetype.RestFeatureTypeLayerRoot;
 
 public class CSVService 
 {
-    public static void writeResultToCSV(ArrayList<RestFeatureTypeLayerRoot> layerList) throws Exception    
+    public static void writeResultToCSV(ArrayList<RestFeatureTypeLayerRoot> layerList, GeoServerConfig geoserverConfig) throws Exception    
     {
         String[] headers = { "workspace", "name", "webmap_layer" , "layer_type" ,"request_status", "request_url", "http_code", "error_message", "error_response_content", "native_name", 
         "title", "external_metadata_count", "srs", "enabled", "geoserver_metadata", "datastore", "tilerequest_count", "tilerequest_sucess", "tilerequest_duration", "tilerequest_httpcode", "tilerequest_contenttype", "tilerequest_gwcresult", "tilerequest_gwcresult_missreason", "gwcresultallmiss","tilerequest_datalength"
@@ -107,7 +108,7 @@ public class CSVService
 
             //System.out.println(sw.toString());
 
-            PrintWriter writer = new PrintWriter("/dados/temp/layers.csv", "UTF-8");
+            PrintWriter writer = new PrintWriter(geoserverConfig.getOutputFile(), "UTF-8");
             writer.println(sw.toString());
             writer.close();
 

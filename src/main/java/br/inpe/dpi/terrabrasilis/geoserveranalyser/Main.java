@@ -49,13 +49,13 @@ public class Main
 
         }
 
-        CSVService.writeResultToCSV(singleRestLayerList);
+        CSVService.writeResultToCSV(singleRestLayerList, geoserverConfig);
     }
     private static GeoServerConfig getGeoserverConfig(String args[]) throws Exception
     {
         if(args.length < 4)
         {
-            String errorMsg = "Missing arguments. Minimal example: \n --geoserver-url=http://localhost:8080/geoserver/, \n --geoserver-username=admin and \n --geoserver-password=geoserver \n";
+            String errorMsg = "Missing arguments. Minimal example: \n --geoserver-url=http://localhost:8080/geoserver/, \n --geoserver-username=admin and \n --geoserver-password=geoserver \n --output-file=/tmp/geoserver-layers.csv \n";
             errorMsg+="Optional argument: --businessapi-url=https://terrabrasilis.dpi.inpe.br/business/ (cross with business api layers)";
             
             throw new Exception(errorMsg);
@@ -90,6 +90,12 @@ public class Main
             {
                 argValue = arg.split("=")[1];
                 geoserverConfig.addBusinessAPIURL(argValue);
+                continue;
+            }
+            if(arg.contains("--output-file="))
+            {
+                argValue = arg.split("=")[1];
+                geoserverConfig.setOutputFile(argValue);
                 continue;
             }
             System.err.println("Argument ignored: " + arg);
