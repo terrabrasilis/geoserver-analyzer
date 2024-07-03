@@ -8,7 +8,7 @@
   <artifactId>geoserver-analyser</artifactId>
   <version>v1.0.0</version>
 
-  <name>geoserveranalyser</name>
+  <name>geoserveranalyzer</name>
   <!-- FIXME change it to the project's website -->
   <url>https://terrabrasilis.dpi.inpe.br</url>
 
@@ -130,7 +130,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>br.inpe.dpi.terrabrasilis.geoserveranalyser.Main</mainClass>
+            <mainClass>br.inpe.dpi.terrabrasilis.geoserveranalyzer.Main</mainClass>
           </manifest>
         </archive>
         <descriptorRefs>

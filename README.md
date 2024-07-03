@@ -69,6 +69,6 @@ After all statements above was executed, the project will be prepare to run the 
 
 ## Runing as dev
 
-`mvn exec:java -Dexec.mainClass="br.inpe.dpi.terrabrasilis.geoserveranalyser.Main" \`
-`-Dexec.args="--businessapi-url=https://terrabrasilis.dpi.inpe.br/business/api/v1/vision/name/deforestation/all --businessapi-url=https://terrabrasilis.dpi.inpe.br/business/api/v1/vision/name/alerts/all --businessapi-url=https://terrabrasilis.dpi.inpe.br/business/api/v1/vision/name/vegetation/all --geoserver-url=https://terrabrasilis.dpi.inpe.br/geoserver/ --geoserver-username=admin --geoserver-password=geoserver --output-file=/tmp/geoserver-analyser.csv`
+`mvn exec:java -Dexec.mainClass="br.inpe.dpi.terrabrasilis.geoserveranalyzer.Main" \`
+`-Dexec.args="--businessapi-url=https://terrabrasilis.dpi.inpe.br/business/api/v1/vision/name/deforestation/all --businessapi-url=https://terrabrasilis.dpi.inpe.br/business/api/v1/vision/name/alerts/all --businessapi-url=https://terrabrasilis.dpi.inpe.br/business/api/v1/vision/name/vegetation/all --geoserver-url=https://terrabrasilis.dpi.inpe.br/geoserver/ --geoserver-username=admin --geoserver-password=geoserver --output-file=/tmp/geoserver-analyzer.csv`
 
