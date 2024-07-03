@@ -1,7 +1,7 @@
 #!/bin/sh
 cd /usr/local/geoserver-analyser
 
-source .env
+#source .env
 
 NOW_TIMESTAMP=`date +%Y-%d-%m_%H-%M-%S`
 OUTPUTFILE="/usr/local/geoserver-analyser/output"
@@ -25,11 +25,12 @@ then
 
     for URL in $URLS
     do
-        BUSINESS_URL_ARG="$BUSINESS_URL_ARG --businessapi-url=+$URL"
+        BUSINESS_URL_ARG="$BUSINESS_URL_ARG --businessapi-url=$URL"
     done
 fi
 
 
 MAIN_ARGS="$GEOSERVER_URL_ARG $GEOSERVER_USERNAME_ARG $GEOSERVER_PASSWORD_ARG $BUSINESS_URL_ARG $OUTPUTFILE_ARG"
 echo "Current Main Argument: $MAIN_ARGS"
-java -Djava.security.egd=file:/dev/./urandom -jar geoserver-analyser.jar $MAIN_ARGS
+
+mvn exec:java -Dexec.mainClass="br.inpe.dpi.terrabrasilis.geoserveranalyser.Main" -Dexec.args="$MAIN_ARGS"
